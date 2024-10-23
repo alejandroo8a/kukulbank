@@ -10,7 +10,10 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/home" />
             <option value="$PROJECT_DIR$/sign_in" />
+            <option value="$PROJECT_DIR$/sign_up" />
+            <option value="$PROJECT_DIR$/transaction" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

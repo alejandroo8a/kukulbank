@@ -23,3 +23,6 @@ rootProject.name = "bank"
 include(":app")
 include(":core")
 include(":sign_in")
+include(":sign_up")
+include(":home")
+include(":transaction")
