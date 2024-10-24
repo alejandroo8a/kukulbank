@@ -63,6 +63,8 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.hilt.android)
+    implementation (libs.gson)
+    implementation(project(":transaction"))
     ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.ui.graphics)

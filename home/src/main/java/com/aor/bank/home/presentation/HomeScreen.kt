@@ -135,9 +135,8 @@ fun HomeScreen(
                         TransactionItem(
                             transaction = transactions[index],
                             onClick = {
-                                /*navController.navigate(
-                                    "${NavigationRoute.TransactionDetails.route}/${transaction.id}"
-                                )*/
+                                val route = NavigationRoute.TransactionDetail.createTransactionDetailsRoute(transactions[index])
+                                navController.navigate(route)
                             }
                         )
                         HorizontalDivider()

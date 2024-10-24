@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">transaction</string>
+    <string name="transaction_details">Detalle de transacción</string>
+    <string name="subtitle">Detalle</string>
+    <string name="date">Fecha</string>
+    <string name="amount">Cantidad</string>
+    <string name="back">Regresar</string>
 </resources>
