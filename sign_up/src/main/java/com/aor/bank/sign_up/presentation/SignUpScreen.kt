@@ -40,6 +40,7 @@ import androidx.navigation.compose.rememberNavController
 import com.aor.bank.core.data.model.BaseState
 import com.aor.bank.core.data.navigation.NavigationRoute
 import com.aor.bank.core.presentation.composables.PhotoPicker
+import com.aor.bank.core.presentation.composables.SuccessDialog
 import com.aor.bank.core.ui.theme.BankTheme
 import com.aor.bank.sign_up.R
 
@@ -54,6 +55,7 @@ fun SignUpScreen(
     var name by remember { mutableStateOf("") }
     var lastName by remember { mutableStateOf("") }
     var photoUri by remember { mutableStateOf<Uri?>(null) }
+    var showSuccessDialog by remember { mutableStateOf(false) }
     val uiState by viewModel.uiState.collectAsState()
     val context = LocalContext.current
 
@@ -114,9 +116,7 @@ fun SignUpScreen(
                             modifier = Modifier.align(Alignment.CenterHorizontally)
                         )
                         is BaseState.Success -> {
-                            navController.navigate(NavigationRoute.Home.route) {
-                                popUpTo(NavigationRoute.OnboardingScreen.route) { inclusive = true }
-                            }
+                            showSuccessDialog = true
                         }
                         is BaseState.Error -> {
                             Text(
@@ -142,6 +142,16 @@ fun SignUpScreen(
                 ) {
                     Text(stringResource(R.string.create_account))
                 }
+            }
+            if (showSuccessDialog) {
+                SuccessDialog(
+                    onDismiss = {
+                        showSuccessDialog = false
+                        navController.navigate(NavigationRoute.Home.route) {
+                            popUpTo(NavigationRoute.OnboardingScreen.route) { inclusive = true }
+                        }
+                    }
+                )
             }
         }
     )

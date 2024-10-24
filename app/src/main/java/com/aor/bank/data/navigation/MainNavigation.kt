@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.aor.bank.core.data.navigation.NavigationRoute
 import com.aor.bank.core.presentation.OnboardingScreen
+import com.aor.bank.home.presentation.HomeScreen
 import com.aor.bank.sign_in.presentation.SignInScreen
 import com.aor.bank.sign_up.presentation.SignUpScreen
 
@@ -44,7 +45,7 @@ fun MainNavigation(navController: NavHostController) {
         }
 
         composable(NavigationRoute.Home.route) {
-            // HomeScreen logic here
+            HomeScreen(navController = navController)
         }
     }
 }

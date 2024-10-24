@@ -22,8 +22,8 @@ class FirebaseAuthServiceImpl @Inject constructor(
     ): Result<Unit> {
         return try {
             val userId = createFirebaseUser(email, password)
-            uploadUserPhoto(userId, photoUri)
-            saveUserData(userId, name, lastName, email)
+            val photoUrl = uploadUserPhoto(userId, photoUri)
+            saveUserData(userId, name, lastName, email, photoUrl)
 
             Result.success(Unit)
         } catch (e: Exception) {
@@ -50,16 +50,24 @@ class FirebaseAuthServiceImpl @Inject constructor(
         return result.user?.uid ?: throw Exception("Error al obtener el UID del usuario")
     }
 
-    private suspend fun uploadUserPhoto(userId: String, photoUri: Uri) {
+    private suspend fun uploadUserPhoto(userId: String, photoUri: Uri): String {
         val photoRef = firebaseStorage.reference.child("users/$userId/photo.jpg")
         photoRef.putFile(photoUri).await()
+        return photoRef.downloadUrl.await().toString()
     }
 
-    private suspend fun saveUserData(userId: String, name: String, lastName: String, email: String) {
+    private suspend fun saveUserData(
+        userId: String,
+        name: String,
+        lastName: String,
+        email: String,
+        photoUrl: String
+    ) {
         val userMap = mapOf(
             "email" to email,
             "name" to name,
-            "lastName" to lastName
+            "last_name" to lastName,
+            "photo_url" to photoUrl
         )
         databaseReference.child("users").child(userId).setValue(userMap).await()
     }
