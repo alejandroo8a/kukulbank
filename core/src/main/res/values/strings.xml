@@ -9,4 +9,8 @@
     <string name="take_photo">Tomar foto de identificación</string>
     <string name="can_not_take_photo">No se pudo tomar la foto.</string>
     <string name="permission_denegate">Permiso de cámara denegado.</string>
+    <string name="dialog_logout_description">¿Estás seguro de que deseas cerrar sesión?</string>
+    <string name="dialog_logout_title">Confirmar Cierre de Sesión</string>
+    <string name="dialog_logout_confirm">Cerrar Sesión</string>
+    <string name="dialog_logout_cancel">Cancelar</string>
 </resources>

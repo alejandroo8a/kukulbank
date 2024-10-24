@@ -29,6 +29,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -42,6 +45,7 @@ import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.aor.bank.core.data.model.TransactionModel
 import com.aor.bank.core.data.navigation.NavigationRoute
+import com.aor.bank.core.presentation.composables.LogoutConfirmationDialog
 import com.aor.bank.core.presentation.util.CurrencyFormatterUtil
 import com.aor.bank.home.R
 
@@ -53,6 +57,7 @@ fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
 
+    var showLogoutDialog by remember { mutableStateOf(false) }
     val logoutState by viewModel.logoutState.collectAsState()
 
     LaunchedEffect(logoutState) {
@@ -70,7 +75,7 @@ fun HomeScreen(
             TopAppBar(
                 title = { Text(text = stringResource(R.string.bank_details)) },
                 actions = {
-                    IconButton(onClick = { viewModel.logout() }) {
+                    IconButton(onClick = { showLogoutDialog = true }) {
                         Icon(Icons.AutoMirrored.Filled.ExitToApp, contentDescription = "Logout")
                     }
                 }
@@ -144,4 +149,13 @@ fun HomeScreen(
             }
         }
     )
+    if (showLogoutDialog) {
+        LogoutConfirmationDialog(
+            onConfirm = {
+                viewModel.logout()
+                showLogoutDialog = false
+            },
+            onDismiss = { showLogoutDialog = false }
+        )
+    }
 }
