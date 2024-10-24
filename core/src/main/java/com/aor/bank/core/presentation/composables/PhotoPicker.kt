@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.aor.bank.core.data.util.PhotoPickerUtils
 import com.aor.bank.core.R
+import com.aor.bank.core.ui.theme.Green50
 
 @Composable
 fun PhotoPicker(
@@ -67,7 +68,7 @@ fun PhotoPicker(
             }
         },
         colors = ButtonDefaults.buttonColors(
-            if (isPhotoTaken.value) Color.Green else Color.Gray
+            if (isPhotoTaken.value) Green50 else Color.Gray
         ),
         shape = RoundedCornerShape(16.dp),
         modifier = Modifier

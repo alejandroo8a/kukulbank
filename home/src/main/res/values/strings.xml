@@ -2,4 +2,6 @@
     <string name="bank_details">Kukulbank</string>
     <string name="your_balance">Tu Balance</string>
     <string name="transactions">Transacciones</string>
+    <string name="income">Ingreso</string>
+    <string name="Spent">Gasto</string>
 </resources>

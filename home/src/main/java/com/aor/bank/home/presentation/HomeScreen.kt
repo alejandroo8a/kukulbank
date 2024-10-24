@@ -3,6 +3,7 @@ package com.aor.bank.home.presentation
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,10 +12,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ExitToApp
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -37,7 +41,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.aor.bank.core.data.navigation.NavigationRoute
-import com.aor.bank.core.presentation.util.CurrencyFormatter
+import com.aor.bank.core.presentation.util.CurrencyFormatterUtil
 import com.aor.bank.home.R
 
 @Composable
@@ -106,7 +110,7 @@ fun HomeScreen(
                                 color = Color.Gray
                             )
                             Text(
-                                text = CurrencyFormatter.formatBalance(balance),
+                                text = CurrencyFormatterUtil.formatBalance(balance),
                                 style = MaterialTheme.typography.headlineMedium,
                                 fontWeight = FontWeight.Bold
                             )
@@ -116,30 +120,29 @@ fun HomeScreen(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Transactions Section
                 Text(
                     text = stringResource(R.string.transactions),
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
-                /*
+
                 LazyColumn(
                     contentPadding = PaddingValues(vertical = 8.dp),
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    items(transactions) { transaction ->
+                    items(transactions.size) { index ->
                         TransactionItem(
-                            transaction = transaction,
+                            transaction = transactions[index],
                             onClick = {
-                                navController.navigate(
+                                /*navController.navigate(
                                     "${NavigationRoute.TransactionDetails.route}/${transaction.id}"
-                                )
+                                )*/
                             }
                         )
-                        Divider()
+                        HorizontalDivider()
                     }
-                }*/
+                }
             }
         }
     )

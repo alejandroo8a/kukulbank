@@ -11,11 +11,11 @@ class FirebaseDatabaseBankImpl @Inject constructor(
 ) : FirebaseDatabaseBank {
 
     override suspend fun getTransactions(): List<TransactionModel> {
-        /*val userId = getCurrentUserId()
+        val randomId = getRandomId()
+
         val snapshot = databaseReference
-            .child("users")
-            .child(userId)
             .child("transactions")
+            .child(randomId.toString())
             .get()
             .await()
 
@@ -23,9 +23,8 @@ class FirebaseDatabaseBankImpl @Inject constructor(
         snapshot.children.forEach { transactionSnapshot ->
             val transaction = transactionSnapshot.getValue(TransactionModel::class.java)
             transaction?.let { transactions.add(it) }
-        }*/
-        return emptyList()
-        //return transactions
+        }
+        return transactions
     }
 
     override suspend fun getBalance(): Double {

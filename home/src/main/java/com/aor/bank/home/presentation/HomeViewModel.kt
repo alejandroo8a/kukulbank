@@ -33,7 +33,7 @@ class HomeViewModel @Inject constructor(
 
     init {
         fetchUserDetails()
-        //fetchTransactions()
+        fetchTransactions()
         fetchBalance()
     }
 
@@ -48,17 +48,17 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
-/*
+
     private fun fetchTransactions() {
         viewModelScope.launch {
             try {
-                val userTransactions = userRepository.getTransactions()
+                val userTransactions = userTransactionsRepository.getTransactions()
                 _transactions.value = userTransactions
             } catch (e: Exception) {
                 Log.e("HomeViewModel", "Error fetching transactions: ${e.message}")
             }
         }
-    }*/
+    }
 
     private fun fetchBalance() {
         viewModelScope.launch {
