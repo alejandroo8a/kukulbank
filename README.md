@@ -114,7 +114,7 @@ I know there are many areas for improvement, but I’ve identified the most impo
 
 If you want to log in without creating a user, you can use the following credentials:
 
-    Email: aochoa0@ucol.mx
-    Password: Yahoo123
+- **Email:** `aochoa0@ucol.mx`
+- **Password:** `Yahoo123`
 
-Any user that you create or log in to will receive random balance and transactions. This is purely to demonstrate how the app works.
+Any user that you create or log in to will receive **random balance and transactions**. This is purely to demonstrate how the app works.
