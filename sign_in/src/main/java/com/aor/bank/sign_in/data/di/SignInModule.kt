@@ -1,6 +1,6 @@
 package com.aor.bank.sign_in.data.di
 
-import com.aor.bank.sign_in.data.repositories.SignInRepository
+import com.aor.bank.sign_in.domain.repositories.SignInRepository
 import com.aor.bank.sign_in.data.repositories.SignInRepositoryImpl
 import dagger.Binds
 import dagger.Module

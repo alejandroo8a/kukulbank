@@ -1,6 +1,7 @@
 package com.aor.bank.core.data.navigation
 
 sealed class NavigationRoute(val route: String) {
+    data object OnboardingScreen : NavigationRoute("onboarding")
     data object Home : NavigationRoute("home")
     data object SignIn : NavigationRoute("sign_in")
     data object SignUp : NavigationRoute("sign_up")

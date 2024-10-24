@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">core</string>
+    <string name="create_account">Crear cuenta</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="onboarding_title">Somos el mejor banco</string>
+    <string name="onboarding_subtitle">Ahora es más fácil estar conectado con tu cuenta, envía y recibe dinero instantáneamente. También puedes invertir en un abrir y cerrar de ojos.</string>
+    <string name="kukulbank">Kukulbank</string>
 </resources>

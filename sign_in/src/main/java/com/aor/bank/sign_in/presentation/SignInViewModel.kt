@@ -3,7 +3,7 @@ package com.aor.bank.sign_in.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aor.bank.core.data.model.BaseState
-import com.aor.bank.sign_in.domain.SignInUseCase
+import com.aor.bank.sign_in.domain.repositories.SignInRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val signInUseCase: SignInUseCase
+    private val signInRepository: SignInRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<BaseState>(BaseState.Init)
@@ -21,7 +21,7 @@ class SignInViewModel @Inject constructor(
     fun signIn(email: String, password: String) {
         _uiState.value = BaseState.Loading
         viewModelScope.launch {
-            val result = signInUseCase(email, password)
+            val result = signInRepository.signIn(email, password)
             _uiState.value = if (result.isSuccess) {
                 BaseState.Success
             } else {

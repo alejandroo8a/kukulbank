@@ -15,7 +15,7 @@ class MainViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
 
-    private val _navigationState = MutableStateFlow<NavigationState>(NavigationState.SignIn)
+    private val _navigationState = MutableStateFlow<NavigationState>(NavigationState.Onboarding)
     val navigationState: StateFlow<NavigationState> = _navigationState
 
     fun checkUserStatus() {
@@ -23,13 +23,13 @@ class MainViewModel @Inject constructor(
             if (userRepository.isUserLoggedIn()) {
                 _navigationState.value = NavigationState.Home
             } else {
-                _navigationState.value = NavigationState.SignIn
+                _navigationState.value = NavigationState.Onboarding
             }
         }
     }
 
     fun signOut() {
         userRepository.signOut()
-        _navigationState.value = NavigationState.SignIn
+        _navigationState.value = NavigationState.Onboarding
     }
 }

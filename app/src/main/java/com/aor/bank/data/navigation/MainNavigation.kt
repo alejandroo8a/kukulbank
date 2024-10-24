@@ -5,26 +5,39 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.aor.bank.core.data.navigation.NavigationRoute
+import com.aor.bank.core.presentation.OnboardingScreen
 import com.aor.bank.sign_in.presentation.SignInScreen
 
 @Composable
 fun MainNavigation(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = NavigationRoute.SignIn.route
+        startDestination = NavigationRoute.OnboardingScreen.route
     ) {
-        // SignIn Screen
-        composable(NavigationRoute.SignIn.route) {
-            SignInScreen(onSignInSuccess = {
-                navController.navigate(NavigationRoute.Home.route) {
-                    popUpTo(NavigationRoute.SignIn.route) { inclusive = true }
+        composable(NavigationRoute.OnboardingScreen.route) {
+            OnboardingScreen(
+                onSignInClicked = {
+                    navController.navigate(NavigationRoute.SignIn.route)
+                },
+                onCreateAccountClicked = {
+                    // Handle create account navigation
                 }
-            })
+            )
         }
 
-        // Home Screen
+        composable(NavigationRoute.SignIn.route) {
+            SignInScreen(
+                onSignInSuccess = {
+                    navController.navigate(NavigationRoute.Home.route) {
+                        popUpTo(NavigationRoute.OnboardingScreen.route) { inclusive = true }
+                    }
+                },
+                navController = navController
+            )
+        }
+
         composable(NavigationRoute.Home.route) {
-            //HomeScreen()
+            // HomeScreen logic here
         }
     }
 }

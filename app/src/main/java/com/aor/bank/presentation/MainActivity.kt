@@ -35,14 +35,14 @@ class MainActivity : ComponentActivity() {
 
                     LaunchedEffect(navState.value) {
                         when (navState.value) {
-                            NavigationState.SignIn -> {
-                                navController.navigate(NavigationRoute.SignIn.route) {
-                                    popUpTo(0)
+                            NavigationState.Onboarding -> {
+                                navController.navigate(NavigationRoute.OnboardingScreen.route) {
+                                    popUpTo(0) // Reset backstack
                                 }
                             }
                             NavigationState.Home -> {
                                 navController.navigate(NavigationRoute.Home.route) {
-                                    popUpTo(0)
+                                    popUpTo(0) // Reset backstack
                                 }
                             }
                         }
@@ -52,4 +52,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
