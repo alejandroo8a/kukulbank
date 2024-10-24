@@ -2,6 +2,7 @@ package com.aor.bank.home.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -92,7 +93,9 @@ fun HomeScreen(
                 user?.let {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 16.dp)
                     ) {
                         Image(
                             painter = rememberAsyncImagePainter(model = it.photoUrl),
@@ -104,16 +107,28 @@ fun HomeScreen(
                             contentScale = ContentScale.Crop
                         )
                         Spacer(modifier = Modifier.width(16.dp))
-                        Column {
+
+                        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                             Text(
                                 text = "${it.name} ${it.lastName}",
-                                style = MaterialTheme.typography.titleMedium
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.SemiBold
                             )
+
+                            Text(
+                                text = it.email,
+                                style = MaterialTheme.typography.bodySmall,
+                                color = Color.Gray
+                            )
+
+                            Spacer(modifier = Modifier.height(4.dp))
+
                             Text(
                                 text = stringResource(R.string.your_balance),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = Color.Gray
                             )
+
                             Text(
                                 text = CurrencyFormatterUtil.formatBalance(balance),
                                 style = MaterialTheme.typography.headlineMedium,

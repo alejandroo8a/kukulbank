@@ -1,7 +1,6 @@
 package com.aor.bank.core.presentation
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -65,7 +64,6 @@ fun OnboardingScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(350.dp)
-                        .padding(vertical = 24.dp)
                 ) {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
@@ -84,7 +82,6 @@ fun OnboardingScreen(
 
                         Spacer(modifier = Modifier.height(8.dp))
 
-                        // Subtitle
                         Text(
                             text = stringResource(R.string.onboarding_subtitle),
                             style = MaterialTheme.typography.bodyMedium.copy(
@@ -96,28 +93,6 @@ fun OnboardingScreen(
                         )
 
                         Spacer(modifier = Modifier.height(24.dp))
-
-                        /*Button(
-                            onClick = onSignInClicked,
-                            shape = RoundedCornerShape(16.dp),
-                            colors = ButtonDefaults.buttonColors(
-                                Color.White,
-                                contentColor = Color.Black
-                            ),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 32.dp)
-                                .height(56.dp)
-                                .border(1.dp, Color.Black, RoundedCornerShape(16.dp)) // Add black border
-                        ) {
-                            Text(
-                                text = stringResource(R.string.login),
-                                style = MaterialTheme.typography.bodyLarge.copy(
-                                    color = Color.Black,
-                                    fontWeight = FontWeight.SemiBold
-                                )
-                            )
-                        }*/
 
                         Button(
                             onClick = onSignInClicked,

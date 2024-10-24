@@ -43,7 +43,8 @@ fun MainNavigation(
             SignInScreen(
                 onSignInSuccess = {
                     navController.navigate(NavigationRoute.Home.route) {
-                        popUpTo(NavigationRoute.Onboarding.route) { inclusive = true }
+                        popUpTo(NavigationRoute.SignIn.route) { inclusive = true }
+                        launchSingleTop = true
                     }
                 },
                 onBackButton = {
@@ -56,7 +57,8 @@ fun MainNavigation(
             SignUpScreen(
                 onSignUpSuccess = {
                     navController.navigate(NavigationRoute.Home.route) {
-                        popUpTo(NavigationRoute.Onboarding.route) { inclusive = true }
+                        popUpTo(NavigationRoute.SignUp.route) { inclusive = true }
+                        launchSingleTop = true
                     }
                 },
                 onBackButton = {
