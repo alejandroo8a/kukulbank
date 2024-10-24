@@ -1,2 +1,5 @@
 <resources>
+    <string name="sign_in_title">Iniciar sesión</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>

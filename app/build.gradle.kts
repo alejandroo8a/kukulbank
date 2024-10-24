@@ -53,9 +53,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":sign_in"))
-    implementation(project(":home"))
     implementation(project(":core"))
+    implementation(project(":sign_in"))
+    implementation(project(":sign_up"))
+    implementation(project(":home"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

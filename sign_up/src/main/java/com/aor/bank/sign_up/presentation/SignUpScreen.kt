@@ -1,4 +1,4 @@
-package com.aor.bank.sign_in.presentation
+package com.aor.bank.sign_up.presentation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -31,31 +31,33 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.aor.bank.core.data.model.BaseState
-import com.aor.bank.sign_in.R
-
+import com.aor.bank.core.ui.theme.BankTheme
+import com.aor.bank.sign_up.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignInScreen(
-    onSignInSuccess: () -> Unit,
+fun SignUpScreen(
     navController: NavController,
-    viewModel: SignInViewModel = hiltViewModel()
+    viewModel: SignUpViewModel = hiltViewModel()
 ) {
-    val uiState by viewModel.uiState.collectAsState()
-
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var name by remember { mutableStateOf("") }
+    var lastName by remember { mutableStateOf("") }
+    val uiState by viewModel.uiState.collectAsState()
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(R.string.sign_in_title)) },
+                title = { Text(stringResource(R.string.create_account)) },
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) { // Back button logic
+                    IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                     }
                 }
@@ -75,6 +77,24 @@ fun SignInScreen(
                         .padding(bottom = 64.dp)
                 ) {
                     TextField(
+                        value = name,
+                        onValueChange = { name = it },
+                        label = { Text(stringResource(R.string.name)) },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    TextField(
+                        value = lastName,
+                        onValueChange = { lastName = it },
+                        label = { Text(stringResource(R.string.last_name)) },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    TextField(
                         value = email,
                         onValueChange = { email = it },
                         label = { Text(stringResource(R.string.email)) },
@@ -88,24 +108,32 @@ fun SignInScreen(
                         onValueChange = { password = it },
                         label = { Text(stringResource(R.string.password)) },
                         modifier = Modifier.fillMaxWidth(),
-                        visualTransformation = PasswordVisualTransformation() // Hide characters
+                        visualTransformation = PasswordVisualTransformation()
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
 
                     when (uiState) {
                         is BaseState.Loading -> CircularProgressIndicator()
-                        is BaseState.Success -> onSignInSuccess()
-                        is BaseState.Error -> Text(
-                            text = (uiState as BaseState.Error).message,
-                            color = MaterialTheme.colorScheme.error
-                        )
+                        is BaseState.Success -> {
+                            navController.navigate("home") {
+                                popUpTo("onboarding") { inclusive = true }
+                            }
+                        }
+                        is BaseState.Error -> {
+                            Text(
+                                text = (uiState as BaseState.Error).message,
+                                color = MaterialTheme.colorScheme.error
+                            )
+                        }
                         else -> {}
                     }
                 }
 
                 Button(
-                    onClick = { viewModel.signIn(email, password) },
+                    onClick = {
+                        viewModel.signUp(name, lastName, email, password)
+                    },
                     shape = RoundedCornerShape(16.dp),
                     modifier = Modifier
                         .align(Alignment.BottomCenter)
@@ -113,9 +141,22 @@ fun SignInScreen(
                         .padding(horizontal = 16.dp, vertical = 16.dp)
                         .height(56.dp)
                 ) {
-                    Text(stringResource(R.string.sign_in_title))
+                    Text(stringResource(R.string.create_account))
                 }
             }
         }
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SignUpScreenPreview() {
+    val navController = rememberNavController()
+
+    BankTheme {
+        SignUpScreen(
+            navController = navController,
+            viewModel = hiltViewModel()
+        )
+    }
 }

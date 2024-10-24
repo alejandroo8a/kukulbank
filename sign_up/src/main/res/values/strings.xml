@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">sign_up</string>
+    <string name="create_account">Crear cuenta</string>
+    <string name="name">Nombre</string>
+    <string name="last_name">Apellido</string>
+    <string name="email">Email</string>
+    <string name="password">Contraseña</string>
 </resources>

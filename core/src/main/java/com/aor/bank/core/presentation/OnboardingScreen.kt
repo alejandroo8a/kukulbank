@@ -97,7 +97,7 @@ fun OnboardingScreen(
 
                         Spacer(modifier = Modifier.height(24.dp))
 
-                        Button(
+                        /*Button(
                             onClick = onSignInClicked,
                             shape = RoundedCornerShape(16.dp),
                             colors = ButtonDefaults.buttonColors(
@@ -114,6 +114,23 @@ fun OnboardingScreen(
                                 text = stringResource(R.string.login),
                                 style = MaterialTheme.typography.bodyLarge.copy(
                                     color = Color.Black,
+                                    fontWeight = FontWeight.SemiBold
+                                )
+                            )
+                        }*/
+
+                        Button(
+                            onClick = onSignInClicked,
+                            shape = RoundedCornerShape(16.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 32.dp)
+                                .height(56.dp)
+                        ) {
+                            Text(
+                                text = stringResource(R.string.login),
+                                style = MaterialTheme.typography.bodyLarge.copy(
+                                    color = Color.White,
                                     fontWeight = FontWeight.SemiBold
                                 )
                             )

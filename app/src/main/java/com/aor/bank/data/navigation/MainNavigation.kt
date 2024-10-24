@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import com.aor.bank.core.data.navigation.NavigationRoute
 import com.aor.bank.core.presentation.OnboardingScreen
 import com.aor.bank.sign_in.presentation.SignInScreen
+import com.aor.bank.sign_up.presentation.SignUpScreen
 
 @Composable
 fun MainNavigation(navController: NavHostController) {
@@ -20,7 +21,7 @@ fun MainNavigation(navController: NavHostController) {
                     navController.navigate(NavigationRoute.SignIn.route)
                 },
                 onCreateAccountClicked = {
-                    // Handle create account navigation
+                    navController.navigate(NavigationRoute.SignUp.route)
                 }
             )
         }
@@ -32,6 +33,12 @@ fun MainNavigation(navController: NavHostController) {
                         popUpTo(NavigationRoute.OnboardingScreen.route) { inclusive = true }
                     }
                 },
+                navController = navController
+            )
+        }
+
+        composable(NavigationRoute.SignUp.route) {
+            SignUpScreen(
                 navController = navController
             )
         }
