@@ -1,4 +1,4 @@
-package com.aor.bank.core.ui.theme
+package com.aor.bank.core.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 

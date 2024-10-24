@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -24,7 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.aor.bank.core.data.model.TransactionModel
 import com.aor.bank.core.presentation.util.CurrencyFormatterUtil
-import com.aor.bank.core.ui.theme.Green50
+import com.aor.bank.core.presentation.theme.Green50
 import com.aor.bank.home.R
 
 @Composable

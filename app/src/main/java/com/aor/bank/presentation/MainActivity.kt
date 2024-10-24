@@ -12,7 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import com.aor.bank.core.data.navigation.NavigationRoute
 import com.aor.bank.data.navigation.MainNavigation
 import com.aor.bank.presentation.composables.SplashScreen
-import com.aor.bank.ui.theme.BankTheme
+import com.aor.bank.presentation.theme.BankTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

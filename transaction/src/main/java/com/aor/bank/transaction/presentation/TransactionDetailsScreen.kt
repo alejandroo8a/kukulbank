@@ -28,10 +28,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.aor.bank.core.data.model.TransactionModel
 import com.aor.bank.core.presentation.util.CurrencyFormatterUtil
-import com.aor.bank.core.ui.theme.Green50
+import com.aor.bank.core.presentation.theme.Green50
 import com.aor.bank.transaction.R
 import com.aor.bank.transaction.presentation.composables.InfoRow
 

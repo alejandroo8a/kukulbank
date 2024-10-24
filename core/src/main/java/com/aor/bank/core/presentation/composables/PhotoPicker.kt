@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.aor.bank.core.data.util.PhotoPickerUtils
 import com.aor.bank.core.R
-import com.aor.bank.core.ui.theme.Green50
+import com.aor.bank.core.presentation.theme.Green50
 
 @Composable
 fun PhotoPicker(

@@ -1,6 +1,5 @@
-package com.aor.bank.ui.theme
+package com.aor.bank.home.presentation.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

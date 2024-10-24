@@ -1,4 +1,4 @@
-package com.aor.bank.sign_up.ui.theme
+package com.aor.bank.sign_up.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

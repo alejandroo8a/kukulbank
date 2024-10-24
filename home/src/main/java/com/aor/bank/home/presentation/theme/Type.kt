@@ -1,4 +1,4 @@
-package com.aor.bank.core.ui.theme
+package com.aor.bank.home.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

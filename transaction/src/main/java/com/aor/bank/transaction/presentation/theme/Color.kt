@@ -1,4 +1,4 @@
-package com.aor.bank.sign_up.ui.theme
+package com.aor.bank.transaction.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 

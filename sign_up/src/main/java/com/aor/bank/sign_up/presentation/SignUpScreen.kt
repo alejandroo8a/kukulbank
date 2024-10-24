@@ -35,13 +35,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.aor.bank.core.data.model.BaseState
-import com.aor.bank.core.data.navigation.NavigationRoute
 import com.aor.bank.core.presentation.composables.PhotoPicker
 import com.aor.bank.core.presentation.composables.SuccessDialog
-import com.aor.bank.core.ui.theme.BankTheme
+import com.aor.bank.core.presentation.theme.BankTheme
 import com.aor.bank.sign_up.R
 
 @OptIn(ExperimentalMaterial3Api::class)
