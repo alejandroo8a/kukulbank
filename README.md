@@ -1,4 +1,4 @@
-Kukulbank 📱💳
+# Kukulbank 📱💳
 
 A modern, secure banking app that allows users to register, log in, and view their bank information, including balances and transaction details. Built with Jetpack Compose and Firebase.
 🚀 Challenge Overview
@@ -24,7 +24,7 @@ Key Tasks:
         Store user data and transactions in Firebase.
         Prepopulate Firebase with test users and movements for easy login testing.
 
-🛠️ Technologies Used
+## 🛠️ Technologies Used
 
     Jetpack Compose: UI toolkit for building the user interface.
     Compose Navigation: For managing navigation between screens.
@@ -34,7 +34,7 @@ Key Tasks:
     Hilt: Dependency injection for easier testing and modularization.
     Kotlin Coroutines and Flow: For asynchronous operations.
 
-🏗️ Architecture
+## 🏗️ Architecture
 
 This project follows the MVVM (Model-View-ViewModel) architecture pattern, ensuring better separation of concerns and scalability.
 Structure:
@@ -60,12 +60,12 @@ Modules:
     SignUp: Manages the onboarding process.
     Transactions: Provides transaction details.
 
-🔄 Asynchronous Handling
+## 🔄 Asynchronous Handling
 
     Kotlin Coroutines: Efficient background task management.
     Flow: Streams data asynchronously to ensure the UI stays updated.
 
-🔍 Features
+## 🔍 Features
 
     Registration Flow:
         Collect personal data and ID photo.
@@ -82,7 +82,7 @@ Modules:
     Test Data Setup:
         Firebase preloaded with sample data to facilitate testing.
 
-🛠️ Improvements
+## 🛠️ Improvements
 
 I know there are many areas for improvement, but I’ve identified the most important on
 
@@ -107,7 +107,7 @@ I know there are many areas for improvement, but I’ve identified the most impo
         Consider migrating to Firestore for more advanced queries.
         Consider use UseCase for most robust application
 
-🔑 Test Credentials
+## 🔑 Test Credentials
 
 If you want to log in without creating a user, you can use the following credentials:
 
