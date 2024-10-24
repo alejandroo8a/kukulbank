@@ -87,10 +87,12 @@ Modules:
 I know there are many areas for improvement, but I’ve identified the most important on
 
     Create a design system module:
-        This module will house molecules and all related composables, ensuring a consistent look and feel across the entire application.
+        This module will house molecules and all related composables, 
+        ensuring a consistent look and feel across the entire application.
 
     Set up a centralized theme:
-        A shared theme across the app ensures visual consistency. This can reside in the design system module for better structure.
+        A shared theme across the app ensures visual consistency. 
+        This can reside in the design system module for better structure.
 
     Offline Mode:
         Cache data locally for offline access to balances and transactions.
@@ -100,7 +102,8 @@ I know there are many areas for improvement, but I’ve identified the most impo
         Add integration tests for Firebase interactions.
 
     Enhance screen designs:
-        Currently, the focus has been on functionality. There’s room to apply improved UI/UX designs for a better user experience.
+        Currently, the focus has been on functionality. 
+        There’s room to apply improved UI/UX designs for a better user experience.
 
     Scalability:
         Implement pagination for the transactions list.
