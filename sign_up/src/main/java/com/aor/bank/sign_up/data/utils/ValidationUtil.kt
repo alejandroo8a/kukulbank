@@ -1,5 +1,6 @@
 package com.aor.bank.sign_up.data.utils
 
+import android.net.Uri
 import java.util.regex.Pattern
 
 object ValidationUtil {
@@ -26,5 +27,13 @@ object ValidationUtil {
         return if (!passwordPattern.matcher(password).matches()) {
             "La contraseña debe tener al menos 8 caracteres y contener una letra mayúscula"
         } else null
+    }
+
+    fun validatePhoto(photoUri: Uri?): String? {
+        return if (photoUri == null) {
+            "Debe tomar una foto de su identificación" // Error message in Spanish
+        } else {
+            null
+        }
     }
 }

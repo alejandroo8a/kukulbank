@@ -1,5 +1,6 @@
 package com.aor.bank.sign_up.presentation
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aor.bank.core.data.model.BaseState
@@ -18,10 +19,10 @@ class SignUpViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<BaseState>(BaseState.Init)
     val uiState: StateFlow<BaseState> = _uiState
 
-    fun signUp(name: String, lastName: String, email: String, password: String) {
+    fun signUp(name: String, lastName: String, email: String, password: String, photoUri: Uri?) {
         viewModelScope.launch {
             _uiState.value = BaseState.Loading
-            val result = signUpRepository.createUser(name, lastName, email, password)
+            val result = signUpRepository.createUser(name, lastName, email, password, photoUri)
             if (result.isSuccess) {
                 _uiState.value = BaseState.Success
             } else {

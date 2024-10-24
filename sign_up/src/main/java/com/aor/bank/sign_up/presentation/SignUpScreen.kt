@@ -1,5 +1,7 @@
 package com.aor.bank.sign_up.presentation
 
+import android.net.Uri
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -29,6 +31,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,6 +40,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.aor.bank.core.data.model.BaseState
+import com.aor.bank.core.data.navigation.NavigationRoute
 import com.aor.bank.core.ui.theme.BankTheme
 import com.aor.bank.sign_up.R
 
@@ -50,7 +54,9 @@ fun SignUpScreen(
     var password by remember { mutableStateOf("") }
     var name by remember { mutableStateOf("") }
     var lastName by remember { mutableStateOf("") }
+    var photoUri by remember { mutableStateOf<Uri?>(null) }
     val uiState by viewModel.uiState.collectAsState()
+    val context = LocalContext.current
 
     Scaffold(
         topBar = {
@@ -71,44 +77,35 @@ fun SignUpScreen(
                     .padding(16.dp)
             ) {
                 Column(
-                    verticalArrangement = Arrangement.Center,
+                    verticalArrangement = Arrangement.Top,
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(bottom = 64.dp)
                 ) {
-                    TextField(
-                        value = name,
-                        onValueChange = { name = it },
-                        label = { Text(stringResource(R.string.name)) },
-                        modifier = Modifier.fillMaxWidth()
+                    UserInputFields(
+                        name = name,
+                        lastName = lastName,
+                        email = email,
+                        password = password,
+                        onNameChange = { name = it },
+                        onLastNameChange = { lastName = it },
+                        onEmailChange = { email = it },
+                        onPasswordChange = { password = it }
                     )
 
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(16.dp))
 
-                    TextField(
-                        value = lastName,
-                        onValueChange = { lastName = it },
-                        label = { Text(stringResource(R.string.last_name)) },
-                        modifier = Modifier.fillMaxWidth()
-                    )
-
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    TextField(
-                        value = email,
-                        onValueChange = { email = it },
-                        label = { Text(stringResource(R.string.email)) },
-                        modifier = Modifier.fillMaxWidth()
-                    )
-
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    TextField(
-                        value = password,
-                        onValueChange = { password = it },
-                        label = { Text(stringResource(R.string.password)) },
-                        modifier = Modifier.fillMaxWidth(),
-                        visualTransformation = PasswordVisualTransformation()
+                    PhotoPicker(
+                        photoUri = photoUri,
+                        onPhotoSelected = { uri ->
+                            if (uri != null) {
+                                photoUri = uri
+                            }
+                        },
+                        context = context,
+                        onError = { errorMessage ->
+                            Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
+                        }
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
@@ -116,8 +113,8 @@ fun SignUpScreen(
                     when (uiState) {
                         is BaseState.Loading -> CircularProgressIndicator()
                         is BaseState.Success -> {
-                            navController.navigate("home") {
-                                popUpTo("onboarding") { inclusive = true }
+                            navController.navigate(NavigationRoute.Home.route) {
+                                popUpTo(NavigationRoute.OnboardingScreen.route) { inclusive = true }
                             }
                         }
                         is BaseState.Error -> {
@@ -132,7 +129,7 @@ fun SignUpScreen(
 
                 Button(
                     onClick = {
-                        viewModel.signUp(name, lastName, email, password)
+                        viewModel.signUp(name, lastName, email, password, photoUri)
                     },
                     shape = RoundedCornerShape(16.dp),
                     modifier = Modifier
