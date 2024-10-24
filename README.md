@@ -84,33 +84,28 @@ Modules:
 
 🛠️ Improvements
 
-While the project meets the requirements, these improvements can further enhance its usability:
+I know there are many areas for improvement, but I’ve identified the most important on
 
-    UI/UX Enhancements:
-        Add animations for smooth screen transitions.
-        Implement Dark Mode for better usability.
+    Create a design system module:
+        This module will house molecules and all related composables, ensuring a consistent look and feel across the entire application.
 
-    Error Handling:
-        Show user-friendly error messages.
-        Use Flow to implement retry logic for network failures.
+    Set up a centralized theme:
+        A shared theme across the app ensures visual consistency. This can reside in the design system module for better structure.
 
     Offline Mode:
         Cache data locally for offline access to balances and transactions.
 
-    Security Enhancements:
-        Add biometric authentication (Fingerprint/Face ID).
-        Encrypt sensitive data using EncryptedSharedPreferences.
-
-    Testing:
+    Increase test coverage:
         Increase unit and UI test coverage with JUnit and Espresso.
         Add integration tests for Firebase interactions.
 
-    Continuous Integration:
-        Set up a CI/CD pipeline with GitHub Actions or Jenkins for automated testing and deployment.
+    Enhance screen designs:
+        Currently, the focus has been on functionality. There’s room to apply improved UI/UX designs for a better user experience.
 
     Scalability:
         Implement pagination for the transactions list.
         Consider migrating to Firestore for more advanced queries.
+        Consider use UseCase for most robust application
 
 🤝 Conclusion
 
