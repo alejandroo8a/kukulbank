@@ -31,8 +31,22 @@ class FirebaseAuthServiceImpl @Inject constructor(
         }
     }
 
+    override suspend fun signInWithEmailAndPassword(email: String, password: String): Result<Unit> {
+        return try {
+            signInFirebaseUser(email, password)
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
     private suspend fun createFirebaseUser(email: String, password: String): String {
         val result = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
+        return result.user?.uid ?: throw Exception("Error al obtener el UID del usuario")
+    }
+
+    private suspend fun signInFirebaseUser(email: String, password: String): String {
+        val result = firebaseAuth.signInWithEmailAndPassword(email, password).await()
         return result.user?.uid ?: throw Exception("Error al obtener el UID del usuario")
     }
 

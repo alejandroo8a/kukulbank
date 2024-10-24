@@ -5,4 +5,8 @@
     <string name="onboarding_title">Somos el mejor banco</string>
     <string name="onboarding_subtitle">Ahora es más fácil estar conectado con tu cuenta, envía y recibe dinero instantáneamente. También puedes invertir en un abrir y cerrar de ojos.</string>
     <string name="kukulbank">Kukulbank</string>
+    <string name="photo_selected">Identificación cargada</string>
+    <string name="take_photo">Tomar foto de identificación</string>
+    <string name="can_not_take_photo">No se pudo tomar la foto.</string>
+    <string name="permission_denegate">Permiso de cámara denegado.</string>
 </resources>

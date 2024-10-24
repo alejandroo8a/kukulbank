@@ -55,7 +55,7 @@ fun SignInScreen(
             TopAppBar(
                 title = { Text(stringResource(R.string.sign_in_title)) },
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) { // Back button logic
+                    IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                     }
                 }
@@ -88,13 +88,15 @@ fun SignInScreen(
                         onValueChange = { password = it },
                         label = { Text(stringResource(R.string.password)) },
                         modifier = Modifier.fillMaxWidth(),
-                        visualTransformation = PasswordVisualTransformation() // Hide characters
+                        visualTransformation = PasswordVisualTransformation()
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
 
                     when (uiState) {
-                        is BaseState.Loading -> CircularProgressIndicator()
+                        is BaseState.Loading -> CircularProgressIndicator(
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
                         is BaseState.Success -> onSignInSuccess()
                         is BaseState.Error -> Text(
                             text = (uiState as BaseState.Error).message,
@@ -111,7 +113,8 @@ fun SignInScreen(
                         .align(Alignment.BottomCenter)
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp, vertical = 16.dp)
-                        .height(56.dp)
+                        .height(56.dp),
+                    enabled = uiState !is BaseState.Loading
                 ) {
                     Text(stringResource(R.string.sign_in_title))
                 }

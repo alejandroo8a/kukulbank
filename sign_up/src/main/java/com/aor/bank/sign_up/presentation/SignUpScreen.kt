@@ -21,7 +21,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -33,7 +32,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -41,6 +39,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.aor.bank.core.data.model.BaseState
 import com.aor.bank.core.data.navigation.NavigationRoute
+import com.aor.bank.core.presentation.composables.PhotoPicker
 import com.aor.bank.core.ui.theme.BankTheme
 import com.aor.bank.sign_up.R
 
@@ -111,7 +110,9 @@ fun SignUpScreen(
                     Spacer(modifier = Modifier.height(16.dp))
 
                     when (uiState) {
-                        is BaseState.Loading -> CircularProgressIndicator()
+                        is BaseState.Loading -> CircularProgressIndicator(
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
                         is BaseState.Success -> {
                             navController.navigate(NavigationRoute.Home.route) {
                                 popUpTo(NavigationRoute.OnboardingScreen.route) { inclusive = true }
@@ -136,7 +137,8 @@ fun SignUpScreen(
                         .align(Alignment.BottomCenter)
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp, vertical = 16.dp)
-                        .height(56.dp)
+                        .height(56.dp),
+                    enabled = uiState !is BaseState.Loading
                 ) {
                     Text(stringResource(R.string.create_account))
                 }

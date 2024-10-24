@@ -2,7 +2,7 @@ package com.aor.bank.sign_up.data.repository
 
 import android.net.Uri
 import com.aor.bank.core.data.repository.firebase.FirebaseAuthService
-import com.aor.bank.sign_up.data.utils.ValidationUtil
+import com.aor.bank.core.data.util.ValidationUtil
 import com.aor.bank.sign_up.domain.repository.SignUpRepository
 import javax.inject.Inject
 

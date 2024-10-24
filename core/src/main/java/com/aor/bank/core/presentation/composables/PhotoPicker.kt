@@ -1,4 +1,4 @@
-package com.aor.bank.sign_up.presentation
+package com.aor.bank.core.presentation.composables
 
 import android.Manifest
 import android.content.Context
@@ -21,10 +21,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import com.aor.bank.core.data.util.PhotoPickerUtils
-import com.aor.bank.sign_up.R
-import java.io.File
+import com.aor.bank.core.R
 
 @Composable
 fun PhotoPicker(
@@ -45,7 +43,7 @@ fun PhotoPicker(
                 isPhotoTaken.value = true
                 onPhotoSelected(imageUri)
             } else {
-                onError("No se pudo tomar la foto.")
+                onError(context.getString(R.string.can_not_take_photo))
             }
         }
     )
@@ -56,7 +54,7 @@ fun PhotoPicker(
             if (isGranted) {
                 cameraLauncher.launch(imageUri)
             } else {
-                onError("Permiso de cámara denegado.")
+                onError(context.getString(R.string.permission_denegate))
             }
         }
     )

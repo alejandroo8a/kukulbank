@@ -4,6 +4,4 @@
     <string name="last_name">Apellido</string>
     <string name="email">Email</string>
     <string name="password">Contraseña</string>
-    <string name="photo_selected">Identificación cargada</string>
-    <string name="take_photo">Tomar foto de identificación</string>
 </resources>

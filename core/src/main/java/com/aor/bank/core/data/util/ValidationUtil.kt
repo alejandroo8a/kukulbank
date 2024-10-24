@@ -1,4 +1,4 @@
-package com.aor.bank.sign_up.data.utils
+package com.aor.bank.core.data.util
 
 import android.net.Uri
 import java.util.regex.Pattern
