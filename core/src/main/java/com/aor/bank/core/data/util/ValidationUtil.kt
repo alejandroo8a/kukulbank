@@ -31,7 +31,7 @@ object ValidationUtil {
 
     fun validatePhoto(photoUri: Uri?): String? {
         return if (photoUri == null) {
-            "Debe tomar una foto de su identificación" // Error message in Spanish
+            "Debe tomar una foto de su identificación"
         } else {
             null
         }

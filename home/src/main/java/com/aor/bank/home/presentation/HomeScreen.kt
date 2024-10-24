@@ -89,7 +89,6 @@ fun HomeScreen(
                     .padding(paddingValues)
                     .padding(16.dp)
             ) {
-                // User Information
                 user?.let {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,

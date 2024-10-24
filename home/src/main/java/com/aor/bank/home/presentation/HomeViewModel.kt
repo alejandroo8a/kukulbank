@@ -43,7 +43,6 @@ class HomeViewModel @Inject constructor(
                 val userDetails = userRepository.getUserDetails()
                 _user.value = userDetails
             } catch (e: Exception) {
-                // Handle error, e.g., log it or show error message
                 Log.e("HomeViewModel", "Error fetching user details: ${e.message}")
             }
         }
@@ -73,6 +72,6 @@ class HomeViewModel @Inject constructor(
 
     fun logout() {
         userRepository.signOut()
-        _logoutState.value = true // Trigger logout state change
+        _logoutState.value = true
     }
 }

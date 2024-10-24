@@ -59,7 +59,6 @@ fun TransactionDetailsScreen(
                     .padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                // Transaction Card
                 Card(
                     shape = RoundedCornerShape(16.dp),
                     elevation = CardDefaults.cardElevation(8.dp),
@@ -103,7 +102,6 @@ fun TransactionDetailsScreen(
 
                 Spacer(modifier = Modifier.weight(1f))
 
-                // Back Button
                 Button(
                     onClick = onBackButton,
                     shape = RoundedCornerShape(16.dp),
