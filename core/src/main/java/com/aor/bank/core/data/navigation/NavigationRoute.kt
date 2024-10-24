@@ -4,7 +4,8 @@ import com.aor.bank.core.data.model.TransactionModel
 import com.google.gson.Gson
 
 sealed class NavigationRoute(val route: String) {
-    data object OnboardingScreen : NavigationRoute("onboarding")
+    data object Loading : NavigationRoute("loading")
+    data object Onboarding : NavigationRoute("onboarding")
     data object Home : NavigationRoute("home")
     data object SignIn : NavigationRoute("sign_in")
     data object SignUp : NavigationRoute("sign_up")

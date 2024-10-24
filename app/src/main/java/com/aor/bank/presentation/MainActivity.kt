@@ -11,7 +11,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.aor.bank.core.data.navigation.NavigationRoute
 import com.aor.bank.data.navigation.MainNavigation
-import com.aor.bank.data.navigation.NavigationState
+import com.aor.bank.presentation.composables.SplashScreen
 import com.aor.bank.ui.theme.BankTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,25 +27,14 @@ class MainActivity : ComponentActivity() {
                     val viewModel: MainViewModel = hiltViewModel()
                     val navState = viewModel.navigationState.collectAsState()
 
-                    LaunchedEffect(Unit) {
-                        viewModel.checkUserStatus()
+                    if (navState.value == NavigationRoute.Loading) {
+                        SplashScreen()
+                    } else {
+                        MainNavigation(navController = navController, navState = navState.value)
                     }
 
-                    MainNavigation(navController = navController)
-
-                    LaunchedEffect(navState.value) {
-                        when (navState.value) {
-                            NavigationState.Onboarding -> {
-                                navController.navigate(NavigationRoute.OnboardingScreen.route) {
-                                    popUpTo(0) // Reset backstack
-                                }
-                            }
-                            NavigationState.Home -> {
-                                navController.navigate(NavigationRoute.Home.route) {
-                                    popUpTo(0) // Reset backstack
-                                }
-                            }
-                        }
+                    LaunchedEffect(Unit) {
+                        viewModel.checkUserStatus()
                     }
                 }
             }

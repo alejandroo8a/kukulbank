@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
+import com.aor.bank.core.data.model.TransactionModel
 import com.aor.bank.core.data.navigation.NavigationRoute
 import com.aor.bank.core.presentation.util.CurrencyFormatterUtil
 import com.aor.bank.home.R
@@ -47,7 +48,8 @@ import com.aor.bank.home.R
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun HomeScreen(
-    navController: NavController,
+    onTransactionClick: (transaction: TransactionModel) -> Unit,
+    onBackButton: () -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
 
@@ -55,9 +57,7 @@ fun HomeScreen(
 
     LaunchedEffect(logoutState) {
         if (logoutState) {
-            navController.navigate(NavigationRoute.OnboardingScreen.route) {
-                popUpTo(0)
-            }
+            onBackButton.invoke()
         }
     }
 
@@ -135,8 +135,7 @@ fun HomeScreen(
                         TransactionItem(
                             transaction = transactions[index],
                             onClick = {
-                                val route = NavigationRoute.TransactionDetail.createTransactionDetailsRoute(transactions[index])
-                                navController.navigate(route)
+                                onTransactionClick.invoke(transactions[index])
                             }
                         )
                         HorizontalDivider()

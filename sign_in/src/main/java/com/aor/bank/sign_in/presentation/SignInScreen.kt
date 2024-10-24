@@ -42,7 +42,7 @@ import com.aor.bank.sign_in.R
 @Composable
 fun SignInScreen(
     onSignInSuccess: () -> Unit,
-    navController: NavController,
+    onBackButton: () -> Unit,
     viewModel: SignInViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -55,7 +55,7 @@ fun SignInScreen(
             TopAppBar(
                 title = { Text(stringResource(R.string.sign_in_title)) },
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
+                    IconButton(onClick = onBackButton) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                     }
                 }

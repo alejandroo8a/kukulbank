@@ -39,14 +39,14 @@ import com.aor.bank.transaction.presentation.composables.InfoRow
 @Composable
 fun TransactionDetailsScreen(
     transaction: TransactionModel,
-    navController: NavController
+    onBackButton: () -> Unit,
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { Text(text = stringResource(R.string.transaction_details)) },
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
+                    IconButton(onClick = onBackButton) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                     }
                 }
@@ -106,7 +106,7 @@ fun TransactionDetailsScreen(
 
                 // Back Button
                 Button(
-                    onClick = { navController.popBackStack() },
+                    onClick = onBackButton,
                     shape = RoundedCornerShape(16.dp),
                     modifier = Modifier
                         .fillMaxWidth()

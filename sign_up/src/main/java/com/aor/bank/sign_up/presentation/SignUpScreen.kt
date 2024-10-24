@@ -47,7 +47,8 @@ import com.aor.bank.sign_up.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignUpScreen(
-    navController: NavController,
+    onSignUpSuccess: () -> Unit,
+    onBackButton: () -> Unit,
     viewModel: SignUpViewModel = hiltViewModel()
 ) {
     var email by remember { mutableStateOf("") }
@@ -64,7 +65,7 @@ fun SignUpScreen(
             TopAppBar(
                 title = { Text(stringResource(R.string.create_account)) },
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
+                    IconButton(onClick = onBackButton) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                     }
                 }
@@ -147,9 +148,7 @@ fun SignUpScreen(
                 SuccessDialog(
                     onDismiss = {
                         showSuccessDialog = false
-                        navController.navigate(NavigationRoute.Home.route) {
-                            popUpTo(NavigationRoute.OnboardingScreen.route) { inclusive = true }
-                        }
+                        onSignUpSuccess.invoke()
                     }
                 )
             }
@@ -160,11 +159,10 @@ fun SignUpScreen(
 @Preview(showBackground = true)
 @Composable
 fun SignUpScreenPreview() {
-    val navController = rememberNavController()
-
     BankTheme {
         SignUpScreen(
-            navController = navController,
+            onSignUpSuccess = {},
+            onBackButton = {},
             viewModel = hiltViewModel()
         )
     }

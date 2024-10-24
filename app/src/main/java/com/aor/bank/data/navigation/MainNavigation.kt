@@ -16,12 +16,19 @@ import com.aor.bank.transaction.presentation.TransactionDetailsScreen
 import com.google.gson.Gson
 
 @Composable
-fun MainNavigation(navController: NavHostController) {
+fun MainNavigation(
+    navController: NavHostController,
+    navState: NavigationRoute
+) {
     NavHost(
         navController = navController,
-        startDestination = NavigationRoute.OnboardingScreen.route
+        startDestination = when (navState) {
+            NavigationRoute.Onboarding -> NavigationRoute.Onboarding.route
+            NavigationRoute.Home -> NavigationRoute.Home.route
+            else -> NavigationRoute.Onboarding.route
+        }
     ) {
-        composable(NavigationRoute.OnboardingScreen.route) {
+        composable(NavigationRoute.Onboarding.route) {
             OnboardingScreen(
                 onSignInClicked = {
                     navController.navigate(NavigationRoute.SignIn.route)
@@ -36,21 +43,40 @@ fun MainNavigation(navController: NavHostController) {
             SignInScreen(
                 onSignInSuccess = {
                     navController.navigate(NavigationRoute.Home.route) {
-                        popUpTo(NavigationRoute.OnboardingScreen.route) { inclusive = true }
+                        popUpTo(NavigationRoute.Onboarding.route) { inclusive = true }
                     }
                 },
-                navController = navController
+                onBackButton = {
+                    navController.popBackStack()
+                }
             )
         }
 
         composable(NavigationRoute.SignUp.route) {
             SignUpScreen(
-                navController = navController
+                onSignUpSuccess = {
+                    navController.navigate(NavigationRoute.Home.route) {
+                        popUpTo(NavigationRoute.Onboarding.route) { inclusive = true }
+                    }
+                },
+                onBackButton = {
+                    navController.popBackStack()
+                }
             )
         }
 
         composable(NavigationRoute.Home.route) {
-            HomeScreen(navController = navController)
+            HomeScreen(
+                onTransactionClick = { transaction ->
+                    val route = NavigationRoute.TransactionDetail.createTransactionDetailsRoute(transaction)
+                    navController.navigate(route)
+                },
+                onBackButton = {
+                    navController.navigate(NavigationRoute.Onboarding.route) {
+                        popUpTo(0)
+                    }
+                }
+            )
         }
 
         composable(
@@ -59,10 +85,11 @@ fun MainNavigation(navController: NavHostController) {
         ) { backStackEntry ->
             val transactionJson = backStackEntry.arguments?.getString("transaction")
             val transaction = Gson().fromJson(transactionJson, TransactionModel::class.java)
-
             TransactionDetailsScreen(
                 transaction = transaction,
-                navController = navController
+                onBackButton = {
+                    navController.popBackStack()
+                }
             )
         }
     }
